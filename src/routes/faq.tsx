@@ -13,11 +13,11 @@ export const Route = createFileRoute("/faq")({
 
 const answers = [
   ["How do I place an order?", "Add an available fragrance to your bag, review the order and continue to the secure Shopify checkout. Delivery details are entered there."],
-  ["Where do you deliver?", "Delivery coverage and shipping charges will be shown at checkout. AM11 Scents has not provided a separate delivery-area list."],
-  ["Which payment methods can I use?", "Available payment methods are displayed in Shopify checkout. Online card payments are not represented as active until the store has enabled them."],
-  ["Where can I find fragrance notes and sizes?", "Only product details confirmed by AM11 Scents are shown on each product page. Please contact the brand when official contact details are available for further product questions."],
-  ["Can I return or exchange an order?", "AM11 Scents has not provided its return or exchange terms yet. Please review the published policy page before placing an order."],
-  ["How can I contact AM11 Scents?", "The official WhatsApp number and email address have not been supplied yet. They will be added once confirmed."],
+  ["Where do you deliver?", "We deliver across Pakistan in 1–5 working days. Shipping is free on orders over Rs 10,000."],
+  ["Which payment methods can I use?", "Cash on delivery plus the payment options shown at checkout."],
+  ["Where can I find fragrance notes and sizes?", "Each product page lists top, heart and base notes, and every scent comes in 50ml and 100ml."],
+  ["Can I return or exchange an order?", "Yes — unopened bottles within 7 days of delivery. See our returns page."],
+  ["How can I contact AM11 Scents?", "Call or WhatsApp +92 300 8412111, or email concierge@am11scents.com."],
 ];
 
 function FaqPage() {

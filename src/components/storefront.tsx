@@ -153,7 +153,7 @@ export function StoreFooter() {
       <div className="shop-container grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
         <div className="sm:col-span-2">
           <p className="font-display text-4xl">AM11 Scents</p>
-          <p className="mt-4 max-w-sm text-sm leading-6 text-primary-foreground/75">A considered collection of fragrances for the moments that stay with you.</p>
+          <p className="mt-4 max-w-sm text-sm leading-6 text-primary-foreground/75">A considered collection of fragrances for the moments that stay with you.</p><p className="mt-4 text-sm text-primary-foreground/75">+92 300 8412111 · concierge@am11scents.com<br />Gulberg Galleria, Lahore</p>
         </div>
         <div>
           <p className="eyebrow">Discover</p>
