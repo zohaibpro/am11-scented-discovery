@@ -28,3 +28,7 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Storefront architecture
+
+- Storefront pages use file-based routes with shared presentation components and Shopify Storefront API data; never fabricate catalog entries or pricing.
