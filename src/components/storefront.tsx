@@ -21,11 +21,16 @@ export function money(amount: string, currencyCode: string) {
 
 export function StoreHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { items } = useCartStore();
+  const { items, syncCart } = useCartStore();
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
   useEffect(() => {
     void useCartStore.persist.rehydrate();
-  }, []);
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") void syncCart();
+    };
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
+  }, [syncCart]);
 
   return (
     <>
@@ -70,9 +75,12 @@ export function StoreHeader() {
 
 function CartPanel({ count }: { count: number }) {
   const [open, setOpen] = useState(false);
-  const { items, updateQuantity, removeItem, isLoading, error } = useCartStore();
+  const { items, updateQuantity, removeItem, isLoading, error, syncCart } = useCartStore();
   const total = items.reduce((sum, item) => sum + Number(item.price.amount) * item.quantity, 0);
   const currency = items[0]?.price.currencyCode ?? "PKR";
+  useEffect(() => {
+    if (open) void syncCart();
+  }, [open, syncCart]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
