@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -9,26 +9,26 @@ import { getProduct, type ShopifyProduct } from "@/lib/shopify-storefront";
 import { pageMetadata } from "@/lib/seo";
 
 export const Route = createFileRoute("/product/$handle")({
-  loader: async ({ params }) => {
-    try {
-      const product = await getProduct(params.handle);
-      if (!product) throw notFound();
-      return product;
-    } catch (error) {
-      if (error && typeof error === "object" && "isNotFound" in error) throw error;
-      return null;
-    }
-  },
-  head: ({ loaderData }) => pageMetadata(loaderData?.title ? `${loaderData.title} | AM11 Scents` : "Fragrance | AM11 Scents", loaderData?.description || "Discover a fragrance from the AM11 Scents collection."),
+  head: () => pageMetadata("Fragrance | AM11 Scents", "Discover a fragrance from the AM11 Scents collection."),
   component: ProductPage,
 });
 
 function ProductPage() {
-  const product = Route.useLoaderData() as ShopifyProduct | null;
+  const { handle } = Route.useParams();
+  const [product, setProduct] = useState<ShopifyProduct | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem, isLoading, error } = useCartStore();
-  useEffect(() => { void useCartStore.persist.rehydrate(); }, []);
+  useEffect(() => {
+    void useCartStore.persist.rehydrate();
+    let active = true;
+    getProduct(handle).then((data) => { if (active) setProduct(data); }).catch(() => { if (active) setLoadError(true); }).finally(() => { if (active) setLoading(false); });
+    return () => { active = false; };
+  }, [handle]);
+  if (loading) return <StoreLayout><section className="shop-container grid gap-9 py-12 md:grid-cols-2"><div className="aspect-[4/5] animate-pulse bg-secondary" /><div className="space-y-5 pt-12"><div className="h-4 w-32 animate-pulse bg-secondary" /><div className="h-12 w-2/3 animate-pulse bg-secondary" /><div className="h-5 w-24 animate-pulse bg-secondary" /></div></section></StoreLayout>;
+  if (loadError) return <StoreLayout><div className="shop-container py-24 text-center"><h1 className="font-display text-4xl">The fragrance could not be loaded</h1><Button className="mt-6" asChild><Link to="/shop"><ArrowLeft /> Back to the collection</Link></Button></div></StoreLayout>;
   if (!product) return <StoreLayout><div className="shop-container py-24 text-center"><p className="eyebrow">AM11 Scents</p><h1 className="mt-4 font-display text-4xl">This fragrance is unavailable</h1><Button className="mt-6" asChild><Link to="/shop"><ArrowLeft /> Back to the collection</Link></Button></div></StoreLayout>;
 
   const variant = product.variants.edges.find((entry) => entry.node.availableForSale)?.node;
