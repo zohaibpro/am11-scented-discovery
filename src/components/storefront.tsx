@@ -46,7 +46,8 @@ export function StoreHeader() {
           <nav className="hidden items-center gap-7 text-sm md:flex" aria-label="Main navigation">
             <Link className="shop-link" to="/shop">Shop</Link>
             <Link className="shop-link" to="/about">Our story</Link>
-            <Link className="shop-link" to="/faq">FAQ</Link>
+            <Link className="shop-link" to="/scent-finder">Scent finder</Link>
+            <Link className="shop-link" to="/gift-builder">Gift sets</Link>
           </nav>
           <Link to="/" className="absolute left-1/2 -translate-x-1/2 text-center" aria-label="AM11 Scents home">
             <span className="block font-display text-[1.85rem] leading-none tracking-[0.02em]">AM11</span>
@@ -64,6 +65,8 @@ export function StoreHeader() {
             <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm">
               <Link to="/shop" onClick={() => setMenuOpen(false)}>Shop all</Link>
               <Link to="/about" onClick={() => setMenuOpen(false)}>Our story</Link>
+              <Link to="/scent-finder" onClick={() => setMenuOpen(false)}>Scent finder</Link>
+              <Link to="/gift-builder" onClick={() => setMenuOpen(false)}>Gift sets</Link>
               <Link to="/faq" onClick={() => setMenuOpen(false)}>FAQ</Link>
               <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
             </div>
@@ -158,7 +161,7 @@ export function StoreFooter() {
         <div>
           <p className="eyebrow">Discover</p>
           <div className="mt-4 flex flex-col gap-3 text-sm text-primary-foreground/80">
-            <Link to="/shop">Shop all</Link><Link to="/about">Our story</Link><Link to="/faq">Frequently asked questions</Link>
+            <Link to="/shop">Shop all</Link><Link to="/about">Our story</Link><Link to="/scent-finder">Scent finder</Link><Link to="/gift-builder">Gift sets</Link><Link to="/faq">Frequently asked questions</Link>
           </div>
         </div>
         <div>
