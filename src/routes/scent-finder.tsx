@@ -83,9 +83,9 @@ function ScentFinderPage() {
               {step > 0 && <button className="inline-flex items-center gap-1 hover:text-foreground" onClick={() => setStep(step - 1)}><ArrowLeft className="size-3" /> Back</button>}
             </div>
             <div className="h-1 w-full bg-secondary"><div className="h-1 bg-primary transition-all duration-500" style={{ width: `${((step + 1) / questions.length) * 100}%` }} /></div>
-            <h2 className="mt-10 text-center display-title text-4xl">{questions[step].q}</h2>
+            <h2 className="mt-10 text-center display-title text-4xl">{questions[step]?.q}</h2>
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
-              {questions[step].options.map((o) => (
+              {(questions[step]?.options ?? []).map((o) => (
                 <button key={o.label} onClick={() => choose(o.family)} className={`group border p-6 text-left transition-all hover:-translate-y-0.5 hover:border-foreground hover:shadow-lg ${answers[step] === o.family ? "border-foreground bg-secondary" : "border-border bg-background"}`}>
                   <span className="block font-display text-2xl">{o.label}</span>
                   <span className="mt-1 block text-sm text-muted-foreground">{o.hint}</span>
