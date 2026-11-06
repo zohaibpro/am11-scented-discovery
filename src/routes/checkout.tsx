@@ -16,7 +16,9 @@ export const Route = createFileRoute("/checkout")({
 function CheckoutPage() {
   const { items, checkoutUrl, isLoading, error } = useCartStore();
   const [ready, setReady] = useState(false);
-  useEffect(() => { void useCartStore.persist.rehydrate().finally(() => setReady(true)); }, []);
+  useEffect(() => {
+    void Promise.resolve(useCartStore.persist.rehydrate()).then(() => setReady(true));
+  }, []);
   const total = items.reduce((sum, item) => sum + Number(item.price.amount) * item.quantity, 0);
   const currency = items[0]?.price.currencyCode ?? "PKR";
 
