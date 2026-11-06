@@ -9,7 +9,10 @@ import { getProduct, type ShopifyProduct } from "@/lib/shopify-storefront";
 import { pageMetadata } from "@/lib/seo";
 
 export const Route = createFileRoute("/product/$handle")({
-  head: () => pageMetadata("Fragrance | AM11 Scents", "Discover a fragrance from the AM11 Scents collection."),
+  head: ({ params }) => pageMetadata(
+    `${params.handle.split("-").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ")} | AM11 Scents`,
+    "Discover this fragrance from the AM11 Scents collection.",
+  ),
   component: ProductPage,
 });
 

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import heroImage from "@/assets/am11-fragrance-hero.jpg";
 import { StoreLayout } from "@/components/storefront";
 import { pageMetadata } from "@/lib/seo";
 
@@ -22,9 +23,7 @@ function AboutPage() {
           <Button variant="outline" className="mt-7" asChild><Link to="/shop">Discover the collection <ArrowRight /></Link></Button>
         </div>
         <div className="aspect-[4/5] overflow-hidden bg-secondary">
-          <div className="grid size-full place-items-center bg-accent/20 p-10 text-center">
-            <div><span className="font-display text-8xl">AM11</span><p className="mt-4 text-xs uppercase tracking-[0.25em]">A personal kind of presence</p></div>
-          </div>
+          <img src={heroImage} alt="A refined perfume bottle and jasmine petals" loading="lazy" width={1600} height={1100} className="size-full object-cover object-[70%_center]" />
         </div>
       </section>
     </StoreLayout>

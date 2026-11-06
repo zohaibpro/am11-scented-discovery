@@ -25,6 +25,7 @@ export function StoreHeader() {
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
   useEffect(() => {
     void useCartStore.persist.rehydrate();
+    void syncCart();
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") void syncCart();
     };
