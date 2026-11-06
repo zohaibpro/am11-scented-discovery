@@ -27,7 +27,6 @@ function HomePage() {
   return (
     <StoreLayout>
       <section className="hero-image relative min-h-[590px] overflow-hidden sm:min-h-[680px]" style={{ backgroundImage: `url(${heroImage})` }}>
-        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/25 to-transparent" />
         <div className="shop-container relative flex min-h-[590px] items-center sm:min-h-[680px]">
           <div className="max-w-xl py-16">
             <p className="eyebrow">A fragrance house in Pakistan</p>
