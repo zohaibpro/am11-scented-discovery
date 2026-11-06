@@ -14,8 +14,10 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as FaqRouteImport } from './routes/faq'
+import { Route as GiftBuilderRouteImport } from './routes/gift-builder'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ReturnsRouteImport } from './routes/returns'
+import { Route as ScentFinderRouteImport } from './routes/scent-finder'
 import { Route as ShippingRouteImport } from './routes/shipping'
 import { Route as ShopRouteImport } from './routes/shop'
 import { Route as ProductHandleRouteImport } from './routes/product.$handle'
@@ -45,6 +47,11 @@ const FaqRoute = FaqRouteImport.update({
   path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GiftBuilderRoute = GiftBuilderRouteImport.update({
+  id: '/gift-builder',
+  path: '/gift-builder',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PrivacyRoute = PrivacyRouteImport.update({
   id: '/privacy',
   path: '/privacy',
@@ -53,6 +60,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
 const ReturnsRoute = ReturnsRouteImport.update({
   id: '/returns',
   path: '/returns',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ScentFinderRoute = ScentFinderRouteImport.update({
+  id: '/scent-finder',
+  path: '/scent-finder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ShippingRoute = ShippingRouteImport.update({
@@ -77,8 +89,10 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/gift-builder': typeof GiftBuilderRoute
   '/privacy': typeof PrivacyRoute
   '/returns': typeof ReturnsRoute
+  '/scent-finder': typeof ScentFinderRoute
   '/shipping': typeof ShippingRoute
   '/shop': typeof ShopRoute
   '/product/$handle': typeof ProductHandleRoute
@@ -89,8 +103,10 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/gift-builder': typeof GiftBuilderRoute
   '/privacy': typeof PrivacyRoute
   '/returns': typeof ReturnsRoute
+  '/scent-finder': typeof ScentFinderRoute
   '/shipping': typeof ShippingRoute
   '/shop': typeof ShopRoute
   '/product/$handle': typeof ProductHandleRoute
@@ -102,8 +118,10 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
   '/faq': typeof FaqRoute
+  '/gift-builder': typeof GiftBuilderRoute
   '/privacy': typeof PrivacyRoute
   '/returns': typeof ReturnsRoute
+  '/scent-finder': typeof ScentFinderRoute
   '/shipping': typeof ShippingRoute
   '/shop': typeof ShopRoute
   '/product/$handle': typeof ProductHandleRoute
@@ -116,8 +134,10 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/faq'
+    | '/gift-builder'
     | '/privacy'
     | '/returns'
+    | '/scent-finder'
     | '/shipping'
     | '/shop'
     | '/product/$handle'
@@ -128,8 +148,10 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/faq'
+    | '/gift-builder'
     | '/privacy'
     | '/returns'
+    | '/scent-finder'
     | '/shipping'
     | '/shop'
     | '/product/$handle'
@@ -140,8 +162,10 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/contact'
     | '/faq'
+    | '/gift-builder'
     | '/privacy'
     | '/returns'
+    | '/scent-finder'
     | '/shipping'
     | '/shop'
     | '/product/$handle'
@@ -153,8 +177,10 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
   FaqRoute: typeof FaqRoute
+  GiftBuilderRoute: typeof GiftBuilderRoute
   PrivacyRoute: typeof PrivacyRoute
   ReturnsRoute: typeof ReturnsRoute
+  ScentFinderRoute: typeof ScentFinderRoute
   ShippingRoute: typeof ShippingRoute
   ShopRoute: typeof ShopRoute
   ProductHandleRoute: typeof ProductHandleRoute
@@ -197,6 +223,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FaqRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gift-builder': {
+      id: '/gift-builder'
+      path: '/gift-builder'
+      fullPath: '/gift-builder'
+      preLoaderRoute: typeof GiftBuilderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/privacy': {
       id: '/privacy'
       path: '/privacy'
@@ -209,6 +242,13 @@ declare module '@tanstack/react-router' {
       path: '/returns'
       fullPath: '/returns'
       preLoaderRoute: typeof ReturnsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/scent-finder': {
+      id: '/scent-finder'
+      path: '/scent-finder'
+      fullPath: '/scent-finder'
+      preLoaderRoute: typeof ScentFinderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/shipping': {
@@ -241,8 +281,10 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
   FaqRoute: FaqRoute,
+  GiftBuilderRoute: GiftBuilderRoute,
   PrivacyRoute: PrivacyRoute,
   ReturnsRoute: ReturnsRoute,
+  ScentFinderRoute: ScentFinderRoute,
   ShippingRoute: ShippingRoute,
   ShopRoute: ShopRoute,
   ProductHandleRoute: ProductHandleRoute,
