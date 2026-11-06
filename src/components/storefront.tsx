@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowDown, ArrowRight, Check, ChevronDown, Menu, Minus, Plus, Search, ShoppingBag, Trash2, X } from "lucide-react";
+import { ArrowDown, ArrowRight, Check, Menu, Minus, Plus, Search, ShoppingBag, Trash2, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
