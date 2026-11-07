@@ -10,6 +10,7 @@ import {
   cartErrors,
   formatCheckoutUrl,
   storefrontRequest,
+  updateCartNote as updateShopifyCartNote,
   type CartLine,
   type Money,
   type ShopifyProduct,
@@ -36,6 +37,7 @@ type CartStore = {
   addItem: (item: Omit<CartItem, "lineId">) => Promise<void>;
   updateQuantity: (variantId: string, quantity: number) => Promise<void>;
   removeItem: (variantId: string) => Promise<void>;
+  updateCartNote: (note: string) => Promise<void>;
   clearCart: () => void;
   syncCart: () => Promise<void>;
 };
@@ -139,6 +141,21 @@ export const useCartStore = create<CartStore>()(
           else set({ items });
         } catch (error) {
           set({ error: error instanceof Error ? error.message : "Could not remove this item." });
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+      updateCartNote: async (note) => {
+        const cartId = get().cartId;
+        if (!cartId) {
+          set({ error: "Add your fragrances to the bag before saving a gift note." });
+          return;
+        }
+        set({ isLoading: true, error: null });
+        try {
+          await updateShopifyCartNote(cartId, note);
+        } catch (error) {
+          set({ error: error instanceof Error ? error.message : "Could not save the gift note." });
         } finally {
           set({ isLoading: false });
         }

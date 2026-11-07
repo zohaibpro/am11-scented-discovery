@@ -96,6 +96,18 @@ export const CART_REMOVE = `mutation CartRemove($cartId: ID!, $lineIds: [ID!]!) 
   cartLinesRemove(cartId: $cartId, lineIds: $lineIds) { cart { id } userErrors { message } }
 }`;
 
+export const CART_NOTE_UPDATE = `mutation CartNoteUpdate($cartId: ID!, $note: String) {
+  cartNoteUpdate(cartId: $cartId, note: $note) { cart { id note } userErrors { message } }
+}`;
+
+export async function updateCartNote(cartId: string, note: string) {
+  const data = await storefrontRequest<{
+    cartNoteUpdate: { cart: { id: string; note: string | null } | null; userErrors: { message: string }[] };
+  }>(CART_NOTE_UPDATE, { cartId, note });
+  cartErrors(data.cartNoteUpdate.userErrors);
+  if (!data.cartNoteUpdate.cart) throw new Error("Shopify did not return the updated gift note.");
+}
+
 export function cartErrors(errors?: { message: string }[]) {
   if (errors?.length) throw new Error(errors.map((error) => error.message).join(" "));
 }

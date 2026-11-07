@@ -229,8 +229,10 @@ export function ShopGrid({ products }: { products: ShopifyProduct[] }) {
     <>
       <div className="flex flex-col gap-4 border-y border-border py-5 sm:flex-row sm:items-center">
         <label className="relative flex-1"><Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" /><Input className="h-11 pl-10" placeholder="Search fragrances" value={search} onChange={(event) => setSearch(event.target.value)} aria-label="Search fragrances" /></label>
-        <label className="flex items-center gap-2 text-sm"><span className="text-muted-foreground">Category</span><select className="h-11 min-w-40 border border-input bg-background px-3 text-sm" value={category} onChange={(event) => setCategory(event.target.value)}>{categories.map((item) => <option key={item}>{item}</option>)}</select></label>
         <label className="flex items-center gap-2 text-sm"><span className="text-muted-foreground">Sort</span><select className="h-11 min-w-40 border border-input bg-background px-3 text-sm" value={sort} onChange={(event) => setSort(event.target.value)}><option value="featured">Featured</option><option value="name">Name</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option></select></label>
+      </div>
+      <div className="flex flex-wrap gap-2 border-b border-border py-4" role="group" aria-label="Filter by fragrance family">
+        {categories.map((item) => <Button key={item} type="button" size="sm" variant={category === item ? "default" : "outline"} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</Button>)}
       </div>
       <p className="py-5 text-xs text-muted-foreground">{filtered.length} {filtered.length === 1 ? "fragrance" : "fragrances"}</p>
       {filtered.length ? <ProductGrid products={filtered} /> : <p className="border-y border-border py-16 text-center text-muted-foreground">No fragrances match your search.</p>}
