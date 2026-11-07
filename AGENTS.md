@@ -32,3 +32,4 @@ use the editor.
 ## Storefront architecture
 
 - Storefront pages use file-based routes with shared presentation components and Shopify Storefront API data; never fabricate catalog entries or pricing.
+- Mount shared Sonner notifications once in the root shell so route-level feedback works throughout the storefront.
